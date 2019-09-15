@@ -2,7 +2,7 @@
   "name": "In My Opinion",
   "version": "0.1",
   "description": "Remove critic and fan review ratings from search results and various websites",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab", "declarativeContent"],
   "browser_action": {
     "default_title": "In My Opinion",
     "default_popup": "modal.html",

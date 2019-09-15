@@ -1,5 +1,5 @@
-## In My Opinion (v1)
+## In My Opinion - A Google Chrome extension (v1)
 
 ![Image](../master/images/imo.png)  
-Remove critic and fan review ratings from search results and various websites
+A Google Chrome extension for removing critic and fan review ratings from search results and various popular webpages.
 
