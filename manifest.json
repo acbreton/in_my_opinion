@@ -11,13 +11,13 @@
       "32": "images/imo32.png",
       "48": "images/imo48.png",
       "128": "images/imo128.png"
-    },
-    "icons": {
-      "16": "images/imo16.png",
-      "32": "images/imo32.png",
-      "48": "images/imo48.png",
-      "128": "images/imo128.png"
     }
+  },
+  "icons": {
+    "16": "images/imo16.png",
+    "32": "images/imo32.png",
+    "48": "images/imo48.png",
+    "128": "images/imo128.png"
   },
   "content_scripts": [{
     "matches": ["https://*/*", "http://*/*"],
