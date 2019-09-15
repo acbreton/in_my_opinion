@@ -43,5 +43,7 @@ const idsToRemove = ['titleUserReviewsTeaser','ratingWidget']
 
 for(let id of idsToRemove) {
     let elem = document.getElementById(id);
-    elem.parentNode.removeChild(elem);
+    if (elem && elem.parentNode) {
+        elem.parentNode.removeChild(elem);
+    }
 }
