@@ -14,36 +14,35 @@ for(let item of dataAttributesToRemove) {
     }
 }
 
-const HTMLElementsToRemove = ['g-review-stars'];
-
-for(let item of HTMLElementsToRemove) {
-    let elems = document.getElementsByTagName(item);
-
-    if(elems.length) {
-        for(let elem of elems) {
-            elem.parentElement.parentElement.removeChild(elem.parentElement);
+if(window.location.host === 'www.google.com') {
+    const titleStars = document.getElementsByClassName('slp f');
+    
+    while(titleStars.length) {
+        let title = titleStars.item(0);
+        if(title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
+            title.parentNode.removeChild(title);
         }
     }
-}
 
-const classNamesToRemove = ['titleReviewBar', 'ratings_wrapper']
-
-for(let className of classNamesToRemove) {
-    let elems = document.getElementsByClassName(className);
+} else if(window.location.host === 'www.imdb.com') {
+    const classNamesToRemove = ['titleReviewBar', 'ratings_wrapper']
     
-    if(elems.length) {
-        for(let elem of elems) {
+    for(let className of classNamesToRemove) {
+        let elems = document.getElementsByClassName(className);
+        
+        if(elems.length) {
+            for(let elem of elems) {
+                elem.parentNode.removeChild(elem);
+            }
+        }
+    }
+    
+    const idsToRemove = ['titleUserReviewsTeaser','ratingWidget']
+    
+    for(let id of idsToRemove) {
+        let elem = document.getElementById(id);
+        if (elem && elem.parentNode) {
             elem.parentNode.removeChild(elem);
         }
-    }
-}
-
-
-const idsToRemove = ['titleUserReviewsTeaser','ratingWidget']
-
-for(let id of idsToRemove) {
-    let elem = document.getElementById(id);
-    if (elem && elem.parentNode) {
-        elem.parentNode.removeChild(elem);
     }
 }
