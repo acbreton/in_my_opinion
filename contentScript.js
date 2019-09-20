@@ -1,48 +1,61 @@
-const dataAttributesToRemove = [
-    '[data-attrid="kc:/film/film:reviews"]', 
-    '[data-attrid="kc:/ugc:thumbs_up"]', 
-    '[data-attrid="kc:/film/film:critic_reviews"]',
-    '[data-attrid="kc:/ugc:user_reviews"]',
-    '[data-starbar-class="rating-list"]'
-];
+let isEnabled;
 
-for(let item of dataAttributesToRemove) {
-    let elem = document.querySelector(item);
-    
-    if(elem) {
-        elem.parentNode.removeChild(elem);
-    }
-}
+chrome.storage.local.get('enabled', function(result) {
+    isEnabled = !!result ? !!result : true;
+    isEnabled ? runScripts(true) : runScripts(false);
+});
 
-if(window.location.host === 'www.google.com') {
-    const titleStars = document.getElementsByClassName('slp f');
+chrome.storage.onChanged.addListener((changes) => {
+    runScripts(changes.enabled.newValue);
+})
+
+function runScripts(takeThemAway) {
+    const dataAttributesToRemove = [
+        '[data-attrid="kc:/film/film:reviews"]', 
+        '[data-attrid="kc:/ugc:thumbs_up"]', 
+        '[data-attrid="kc:/film/film:critic_reviews"]',
+        '[data-attrid="kc:/ugc:user_reviews"]',
+        '[data-attrid="kc:/tv/tv_program:reviews"]',
+        '[data-starbar-class="rating-list"]'
+    ];
     
-    while(titleStars.length) {
-        let title = titleStars.item(0);
-        if(title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
-            title.parentNode.removeChild(title);
+    for(let item of dataAttributesToRemove) {
+        let elem = document.querySelector(item);
+        
+        if(elem) {
+            elem.style.display = takeThemAway ? 'none' : 'block';
         }
     }
-
-} else if(window.location.host === 'www.imdb.com') {
-    const classNamesToRemove = ['titleReviewBar', 'ratings_wrapper']
     
-    for(let className of classNamesToRemove) {
-        let elems = document.getElementsByClassName(className);
+    if(window.location.host === 'www.google.com') {
+        const titleStars = document.getElementsByClassName('slp f');
         
-        if(elems.length) {
-            for(let elem of elems) {
-                elem.parentNode.removeChild(elem);
+        for(let title of titleStars) {
+            if(title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
+                title.style.display = takeThemAway ? 'none' : 'block';
             }
         }
-    }
     
-    const idsToRemove = ['titleUserReviewsTeaser','ratingWidget']
-    
-    for(let id of idsToRemove) {
-        let elem = document.getElementById(id);
-        if (elem && elem.parentNode) {
-            elem.parentNode.removeChild(elem);
+    } else if(window.location.host === 'www.imdb.com') {
+        const classNamesToRemove = ['titleReviewBar', 'ratings_wrapper']
+        
+        for(let className of classNamesToRemove) {
+            let elems = document.getElementsByClassName(className);
+            
+            if(elems.length) {
+                for(let elem of elems) {
+                    elem.style.display = takeThemAway ? 'none' : 'block';
+                }
+            }
+        }
+        
+        const idsToRemove = ['titleUserReviewsTeaser','ratingWidget']
+        
+        for(let id of idsToRemove) {
+            let elem = document.getElementById(id);
+            if (elem && elem.parentNode) {
+                elem.style.display = takeThemAway ? 'none' : 'block';
+            }
         }
     }
 }
