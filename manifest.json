@@ -6,7 +6,7 @@
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "browser_action": {
     "default_title": "In My Opinion",
-    "default_popup": "modal.html",
+    "default_popup": "./modal/modal.html",
     "default_icon": {
       "16": "images/imo16.png",
       "32": "images/imo32.png",
