@@ -3,14 +3,17 @@
         <link rel="stylesheet" href="./modal.css">
     </head>
     <body>
-        <strong>In My Opinion (v0.4)</strong>
-        <img src="../images/imo.png"/>
-        Remove critic and fan review ratings from search results and various websites.<br />
-        <div class="toggleExtension">
-            <label class="switch">
-                <input type="checkbox" id="toggleExtension" checked="true">
-                <span class="slider round"></span>
-            </label>
+        <div class="mainContent">
+            <span class="appTitle"><strong>In My Opinion (v<span id="appVersion"></span>)</strong></span>
+            <img src="../images/imo.png"/>
+            <div class="description">Remove critic and fan review ratings from search results and various websites.</div>
+            <div class="toggleExtension">
+                <span class="controlTitle"><strong>TURN ON/OFF</strong></span>
+                <label class="switch">
+                    <input type="checkbox" id="toggleExtension" checked="false">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
         <script src="./modal.js"></script>
     </body>

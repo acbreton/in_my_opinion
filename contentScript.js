@@ -1,8 +1,6 @@
-let isEnabled;
-
 chrome.storage.local.get('enabled', function(result) {
-    isEnabled = !!result ? !!result : true;
-    isEnabled ? runScripts(true) : runScripts(false);
+    let isEnabled = !!result ? !!result.enabled : true;
+    runScripts(isEnabled);
 });
 
 chrome.storage.onChanged.addListener((changes) => {
@@ -29,10 +27,10 @@ function runScripts(takeThemAway) {
     
     if(window.location.host === 'www.google.com') {
         const titleStars = document.getElementsByClassName('slp f');
-        
+
         for(let title of titleStars) {
-            if(title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
-                title.style.display = takeThemAway ? 'none' : 'block';
+            if(title.firstElementChild && title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
+                    title.style.display = takeThemAway ? 'none' : 'block';
             }
         }
     
