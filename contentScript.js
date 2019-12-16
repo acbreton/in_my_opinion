@@ -12,9 +12,11 @@ function runScripts(takeThemAway) {
         '[data-attrid="kc:/film/film:reviews"]', 
         '[data-attrid="kc:/ugc:thumbs_up"]', 
         '[data-attrid="kc:/film/film:critic_reviews"]',
+        '[data-attrid="kc:/cvg/computer_videogame:reviews"]',
         '[data-attrid="kc:/ugc:user_reviews"]',
         '[data-attrid="kc:/tv/tv_program:reviews"]',
         '[data-starbar-class="rating-list"]'
+        
     ];
     
     for(let item of dataAttributesToRemove) {
