@@ -1,38 +1,47 @@
+let isEnabled;
+
 chrome.storage.local.get('enabled', function(result) {
-    let isEnabled = !!result ? !!result.enabled : true;
+    isEnabled = !!result ? !!result.enabled : true;
     runScripts(isEnabled);
 });
 
 chrome.storage.onChanged.addListener((changes) => {
-    runScripts(changes.enabled.newValue);
-})
+    changes.enabled ? runScripts(changes.enabled.newValue) : runScripts(isEnabled);
+});
 
 function runScripts(takeThemAway) {
-    const dataAttributesToRemove = [
-        '[data-attrid="kc:/film/film:reviews"]', 
-        '[data-attrid="kc:/ugc:thumbs_up"]', 
-        '[data-attrid="kc:/film/film:critic_reviews"]',
-        '[data-attrid="kc:/cvg/computer_videogame:reviews"]',
-        '[data-attrid="kc:/ugc:user_reviews"]',
-        '[data-attrid="kc:/tv/tv_program:reviews"]',
-        '[data-starbar-class="rating-list"]'
-        
-    ];
-    
-    for(let item of dataAttributesToRemove) {
-        let elem = document.querySelector(item);
-        
-        if(elem) {
-            elem.style.display = takeThemAway ? 'none' : 'block';
-        }
+    const dataAttributesToRemove = {
+        "movies": [
+            '[data-attrid="kc:/film/film:reviews"]', 
+            '[data-attrid="kc:/film/film:critic_reviews"]'
+        ],
+        "tv": [
+            '[data-attrid="kc:/tv/tv_program:reviews"]'
+        ],
+        "books": [
+            '[data-attrid="kc:/book/book:reviews"]'
+        ],
+        "games": [
+            '[data-attrid="kc:/cvg/computer_videogame:reviews"]'
+        ],
+        "general": [
+            '[data-attrid="kc:/ugc:thumbs_up"]', 
+            '[data-attrid="kc:/ugc:user_reviews"]',
+            '[data-starbar-class="rating-list"]'
+        ]
     }
+
+    chrome.storage.local.get((result) => {
+        const disabledCategories = Object.keys(result).filter((key) => !result[key])
+        return _omitCategories(disabledCategories, dataAttributesToRemove, takeThemAway);
+    });
     
     if(window.location.host === 'www.google.com') {
         const titleStars = document.getElementsByClassName('slp f');
 
         for(let title of titleStars) {
             if(title.firstElementChild && title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
-                    title.style.display = takeThemAway ? 'none' : 'block';
+                title.style.display = takeThemAway ? 'none' : 'block';
             }
         }
     
@@ -58,4 +67,20 @@ function runScripts(takeThemAway) {
             }
         }
     }
+}
+
+_omitCategories = (disabledCategories, dataAttributesToRemove, takeThemAway) => {
+    Object.keys(dataAttributesToRemove).forEach((category) => {
+        dataAttributesToRemove[category].forEach((item) => {
+            let elem = document.querySelector(item);
+
+            if(elem) {
+                if(disabledCategories.includes(category)) {
+                    elem.style.display = 'block';
+                } else {
+                    elem.style.display = takeThemAway ? 'none' : 'block';
+                }
+            }
+        })
+    })
 }
