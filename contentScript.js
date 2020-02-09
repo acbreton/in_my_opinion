@@ -1,6 +1,6 @@
 let isEnabled;
 
-chrome.storage.local.get('enabled', function(result) {
+chrome.storage.local.get('enabled', (result) => {
     isEnabled = !!result ? !!result.enabled : true;
     runScripts(isEnabled);
 });
@@ -24,7 +24,7 @@ function runScripts(takeThemAway) {
         "games": [
             '[data-attrid="kc:/cvg/computer_videogame:reviews"]'
         ],
-        "general": [
+        "google_users": [
             '[data-attrid="kc:/ugc:thumbs_up"]', 
             '[data-attrid="kc:/ugc:user_reviews"]',
             '[data-starbar-class="rating-list"]'

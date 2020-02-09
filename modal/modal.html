@@ -3,55 +3,50 @@
         <link rel="stylesheet" href="./modal.css">
     </head>
     <body>
+        <div id="debug"></div>
         <div class="mainContent">
-            <span class="appTitle"><strong>In My Opinion (v<span id="appVersion"></span>)</strong></span>
-            <img src="../images/imo.png"/>
-            <div class="description">Remove critic and fan review ratings from search results and various websites.</div>
+            <span class="extensionTitle"><strong>In My Opinion (v<span id="appVersion"></span>)</strong></span>
+            <div class="extensionIntroduction">
+                <img class="extensionLogo" src="../images/imo.png"/>
+                <div class="description">Remove critic and fan review ratings from search results and various websites.</div>
+            </div>
             <div class="toggleExtension">
-                <span class="controlTitle"><strong>TURN ON/OFF</strong></span>
+                <span class="controlTitle"><strong>OFF</strong></span>
                 <label class="switch">
                     <input type="checkbox" id="toggleExtension" checked="false">
                     <span class="slider round"></span>
                 </label>
+                <span class="controlTitle"><strong>ON</strong></span>
             </div>
+            <section><h3>Settings</h3></section>
             <div id="extensionSettings">
-                <h3>Settings</h3>
-                <div class="toggleExtension">
-                    <span class="controlTitle"><strong>Movies</strong></span>
-                    <label class="switch">
+                <div class="settingsRow">
+                    <div class="toggleExtension">
+                        <span class="controlTitle"><strong>Movies</strong></span>
                         <input id="movies" type="checkbox" checked="true">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div class="toggleExtension">
-                    <span class="controlTitle"><strong>TV Shows</strong></span>
-                    <label class="switch">
+                    </div>
+                    <div class="toggleExtension">
+                        <span class="controlTitle"><strong>TV Shows</strong></span>
                         <input id="tv" type="checkbox" checked="true">
-                        <span class="slider round"></span>
-                    </label>
+                    </div>
                 </div>
-                <div class="toggleExtension">
-                    <span class="controlTitle"><strong>Books</strong></span>
-                    <label class="switch">
+                <div class="settingsRow">
+                    <div class="toggleExtension">
+                        <span class="controlTitle"><strong>Books</strong></span>
                         <input id="books" type="checkbox" checked="true">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div class="toggleExtension">
-                    <span class="controlTitle"><strong>Video Games</strong></span>
-                    <label class="switch">
+                    </div>
+                    <div class="toggleExtension">
+                        <span class="controlTitle"><strong>Video Games</strong></span>
                         <input id="games" type="checkbox" checked="true">
-                        <span class="slider round"></span>
-                    </label>
+                    </div>
                 </div>
-                <div class="toggleExtension">
-                    <span class="controlTitle"><strong>General</strong></span>
-                    <label class="switch">
-                        <input id="general" type="checkbox" checked="true">
-                        <span class="slider round"></span>
-                    </label>
+                <div class="settingsRow">
+                    <div class="toggleExtension">
+                        <span class="controlTitle"><strong>Google Users</strong></span>
+                        <input id="google_users" type="checkbox" checked="true">
+                    </div>
                 </div>
-            </div>
+            </div></div>
         </div>
         <script src="./modal.js"></script>
     </body>

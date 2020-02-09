@@ -1,31 +1,61 @@
 html,
 body {
-  height: 450px;
+  height: 100%;
+  height: 190px;
 }
 
 .mainContent {
   display: flex;
   flex-flow: column;
+  width: 300px; 
 }
 
-.appTitle {
+.extensionIntroduction {
+  display: flex;
+  align-items: center;
+}
+
+.extensionTitle {
   font-size: 24px;
   text-align: center;
 }
 
+.extensionLogo {
+  width: 150px;
+}
+
+#extensionSettings {
+  border-top: solid 1px lightgray;
+}
+
 .description {
   font-size: 16px;
-  padding: 12px 0;
+  padding: 15px;
 }
 
 .toggleExtension {
-  border-top: solid 1px black;
   display: flex;
   width: 100%;
   height: 50px;
   align-items: center;
   justify-content: space-evenly;
   padding: 12px 0;
+}
+.toggleExtension:nth-child(1) {
+  border-right: solid 2px lightgray;
+}
+.toggleExtension:last-child {
+  border: 0;
+}
+
+.settingsRow {
+  display: flex;
+}
+.settingsRow:first-child {
+  border-bottom: solid 2px lightgray;
+}
+.settingsRow:last-child {
+  border-top: solid 2px lightgray;
 }
 
 .switch {
@@ -34,7 +64,9 @@ body {
   width: 62px;
 }
 
-.switch input {display:none;}
+.switch input {
+  display:none;
+}
 
 .slider {
   position: absolute;
