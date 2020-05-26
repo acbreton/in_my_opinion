@@ -1,9 +1,10 @@
-## In My Opinion (Version 0.7.1)
+## In My Opinion
 
-![Image](../master/images/imo.png)  
 A Google Chrome extension for removing critic and fan review ratings from search results and various popular webpages.
 
-[Chrome Web Store Page](https://chrome.google.com/webstore/detail/in-my-opinion/lkopodamggoocbopennlkmhbmhohlkdc)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/lkopodamggoocbopennlkmhbmhohlkdc)](https://chrome.google.com/webstore/detail/in-my-opinion/lkopodamggoocbopennlkmhbmhohlkdc)
 
-Developed By: Alec Breton (acbreton)
+![Image](../master/images/imo.png)
+
+*Developed By: Alec Breton (acbreton)*
 
