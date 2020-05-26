@@ -32,10 +32,21 @@ function changeHandler(event) {
 
 function populateChecks() {
     chrome.storage.local.get((result) => {
-        if(result) {
+        if (result) {
             for (let category of categories) {
                 document.getElementById(category).checked = result[category] || true;
             }
         }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    let webStoreLink = document.getElementById("webStoreLink");
+    webStoreLink.addEventListener("click", openLink);
+});
+
+function openLink() {
+    chrome.tabs.create({
+        active: true, url: "https://chrome.google.com/webstore/detail/in-my-opinion/lkopodamggoocbopennlkmhbmhohlkdc"
     });
 }

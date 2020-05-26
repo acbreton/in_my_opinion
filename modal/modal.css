@@ -114,3 +114,12 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#webStoreLink {
+  color: blue;
+  cursor: pointer;
+}
+
+#webStoreLink:hover {
+  text-decoration: underline;
+}
