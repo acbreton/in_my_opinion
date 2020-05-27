@@ -12,7 +12,7 @@ chrome.storage.onChanged.addListener((changes) => {
 function runScripts(takeThemAway) {
     const dataAttributesToRemove = {
         "movies": [
-            '[data-attrid="kc:/film/film:reviews"]', 
+            '[data-attrid="kc:/film/film:reviews"]',
             '[data-attrid="kc:/film/film:critic_reviews"]'
         ],
         "tv": [
@@ -25,7 +25,7 @@ function runScripts(takeThemAway) {
             '[data-attrid="kc:/cvg/computer_videogame:reviews"]'
         ],
         "google_users": [
-            '[data-attrid="kc:/ugc:thumbs_up"]', 
+            '[data-attrid="kc:/ugc:thumbs_up"]',
             '[data-attrid="kc:/ugc:user_reviews"]',
             '[data-starbar-class="rating-list"]'
         ]
@@ -35,31 +35,30 @@ function runScripts(takeThemAway) {
         const disabledCategories = Object.keys(result).filter((key) => !result[key])
         return _omitCategories(disabledCategories, dataAttributesToRemove, takeThemAway);
     });
-    
-    if(window.location.host === 'www.google.com') {
-        const titleStars = document.getElementsByClassName('slp f');
 
+    if(window.location.host === 'www.google.com') {
+        // Get the star ratings for the individual search results.
+        const titleStars = document.getElementsByTagName('g-review-stars');
+
+        // Hide the star ratings.
         for(let title of titleStars) {
-            if(title.firstElementChild && title.firstElementChild.nodeName === 'G-REVIEW-STARS') {
-                title.style.display = takeThemAway ? 'none' : 'block';
-            }
+            title.parentElement.style.display = takeThemAway ? 'none' : 'block';
         }
-    
+
     } else if(window.location.host === 'www.imdb.com') {
         const classNamesToRemove = ['titleReviewBar', 'ratings_wrapper']
-        
+
         for(let className of classNamesToRemove) {
             let elems = document.getElementsByClassName(className);
-            
+
             if(elems.length) {
                 for(let elem of elems) {
                     elem.style.display = takeThemAway ? 'none' : 'block';
                 }
             }
         }
-        
+
         const idsToRemove = ['titleUserReviewsTeaser','ratingWidget']
-        
         for(let id of idsToRemove) {
             let elem = document.getElementById(id);
             if (elem && elem.parentNode) {
@@ -68,6 +67,7 @@ function runScripts(takeThemAway) {
         }
     }
 }
+
 
 _omitCategories = (disabledCategories, dataAttributesToRemove, takeThemAway) => {
     Object.keys(dataAttributesToRemove).forEach((category) => {
