@@ -15,9 +15,16 @@ body {
   align-items: center;
 }
 
+.extensionHeader {
+  text-align: center;
+}
+
 .extensionTitle {
   font-size: 24px;
-  text-align: center;
+}
+
+.extensionVersion {
+  font-size: 12px;
 }
 
 .extensionLogo {

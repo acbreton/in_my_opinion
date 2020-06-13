@@ -4,23 +4,21 @@ document.getElementById('appVersion').innerHTML = appVersion;
 const toggle = document.getElementById('toggleExtension');
 
 chrome.storage.local.get('enabled', (result) => {
-    let isEnabled = !!result ? !!result.enabled : true;
+    let isEnabled = (result.enabled !== undefined) ? result.enabled : true;
     toggle.checked = isEnabled;
 
     if (isEnabled) populateChecks();
 });
 
-toggle.addEventListener("change", () => {
+toggle.addEventListener('change', () => {
     toggle.checked = !!toggle.checked;
-    chrome.storage.local.set({'enabled': toggle.checked}, () => {
-        toggle.checked ? populateChecks() : chrome.storage.local.clear();
-    });
+    chrome.storage.local.set({'enabled': toggle.checked}, () => toggle.checked && populateChecks());
 
     let extensionSettings = document.getElementById('extensionSettings');
     extensionSettings.style.display = toggle.checked ? 'block' : 'none';
 });
 
-const categories = ["movies", "tv", "books", "games", "google_users"]
+const categories = ["movies", "tv", "books", "games", "google_users"];
 
 categories.forEach((category) => {
     document.querySelector(`#${category}`).addEventListener('change', changeHandler);
@@ -32,9 +30,9 @@ function changeHandler(event) {
 
 function populateChecks() {
     chrome.storage.local.get((result) => {
-        if (result) {
-            for (let category of categories) {
-                document.getElementById(category).checked = result[category] || true;
+        for (let category of categories) {
+            if (result[category] !== undefined) {
+                document.getElementById(category).checked = result[category];
             }
         }
     });
