@@ -9,7 +9,7 @@ chrome.storage.onChanged.addListener((changes) => {
     changes.enabled ? runScripts(changes.enabled.newValue) : runScripts(isEnabled);
 });
 
-function runScripts(takeThemAway) {
+function runScripts(extensionEnabled) {
     const dataAttributesToRemove = {
         "movies": [
             '[data-attrid="kc:/film/film:reviews"]',
@@ -34,7 +34,7 @@ function runScripts(takeThemAway) {
 
     chrome.storage.local.get((result) => {
         const disabledCategories = Object.keys(result).filter((key) => !result[key])
-        return _omitCategories(disabledCategories, dataAttributesToRemove, takeThemAway);
+        return _omitCategories(disabledCategories, dataAttributesToRemove, extensionEnabled);
     });
 
     if (window.location.host === 'www.google.com') {
@@ -43,9 +43,8 @@ function runScripts(takeThemAway) {
 
         // Hide the star ratings.
         for (let title of titleStars) {
-            title.parentElement.style.display = takeThemAway ? 'none' : 'block';
+            title.parentElement.style.display = extensionEnabled ? 'none' : 'block';
         }
-
     } else if (window.location.host === 'www.imdb.com') {
         const classNamesToRemove = ['titleReviewBar', 'ratings_wrapper']
 
@@ -54,7 +53,7 @@ function runScripts(takeThemAway) {
 
             if (elems.length) {
                 for (let elem of elems) {
-                    elem.style.display = takeThemAway ? 'none' : 'block';
+                    elem.style.display = extensionEnabled ? 'none' : 'block';
                 }
             }
         }
@@ -63,20 +62,32 @@ function runScripts(takeThemAway) {
         for (let id of idsToRemove) {
             let elem = document.getElementById(id);
             if (elem && elem.parentNode) {
-                elem.style.display = takeThemAway ? 'none' : 'block';
+                elem.style.display = extensionEnabled ? 'none' : 'block';
             }
         }
     }
 }
 
-_omitCategories = (disabledCategories, dataAttributesToRemove, takeThemAway) => {
+_omitCategories = (disabledCategories, dataAttributesToRemove, extensionEnabled) => {
+    _manageReviewResults(disabledCategories.includes('review_sites'), extensionEnabled);
+
     Object.keys(dataAttributesToRemove).forEach((category) => {
         dataAttributesToRemove[category].forEach((item) => {
             let elem = document.querySelector(item);
 
             if (elem) {
-                elem.style.display = (disabledCategories.includes(category) || !takeThemAway) ? 'block' : 'none';
+                elem.style.display = (disabledCategories.includes(category)) ? 'block' : 'none';
             }
         });
     });
+}
+
+_manageReviewResults = (showReviewSites, extensionEnabled) => {
+    let cites = document.getElementsByTagName('cite');  
+
+    for (let item of cites) {
+        if (item.innerHTML.match(/(review|rottentomatoes)/g)) {
+            item.closest('.g').style.display = (!showReviewSites && extensionEnabled) ? 'none' : 'block';
+        }
+    }
 }

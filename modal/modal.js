@@ -18,7 +18,7 @@ toggle.addEventListener('change', () => {
     extensionSettings.style.display = toggle.checked ? 'block' : 'none';
 });
 
-const categories = ["movies", "tv", "books", "games", "google_users"];
+const categories = ["movies", "tv", "books", "games", "review_sites", "google_users"];
 
 categories.forEach((category) => {
     document.querySelector(`#${category}`).addEventListener('change', changeHandler);
