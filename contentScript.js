@@ -86,7 +86,7 @@ _manageReviewResults = (showReviewSites, extensionEnabled) => {
     let cites = document.getElementsByTagName('cite');  
 
     for (let item of cites) {
-        if (item.innerHTML.match(/(review|rottentomatoes)/g)) {
+        if (item.innerHTML.toLowerCase().match(/(review|rottentomatoes)/g)) {
             item.closest('.g').style.display = (!showReviewSites && extensionEnabled) ? 'none' : 'block';
         }
     }
