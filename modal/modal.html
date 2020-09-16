@@ -13,11 +13,14 @@
                 <img class="extensionLogo" src="../images/imo.png"/>
                 <div class="description">
                     <span>Remove critic and fan review ratings from search results and various websites.</span>
-                    <br>
-                    <span id="webStoreLink">Store Page</span>
+                    <div class="links">
+                        <span id="webStoreLink">\\ Store Page</span>
+                        <br>
+                        <span id="reviewLink">\\ Write Review</span>
+                    </div>
                 </div>
             </div>
-            <div class="toggleExtension">
+            <div class="toggleExtension main">
                 <span class="controlTitle"><strong>OFF</strong></span>
                 <label class="switch">
                     <input type="checkbox" id="toggleExtension" checked="true">
@@ -25,9 +28,9 @@
                 </label>
                 <span class="controlTitle"><strong>ON</strong></span>
             </div>
-            <section><h3>Settings</h3></section>
-            <div id="extensionSettings">
-                <div class="settingsRow">
+            <section><h3>Options</h3></section>
+            <div id="extensionOptions">
+                <div class="optionsRow">
                     <div class="toggleExtension">
                         <span class="controlTitle"><strong>Movies</strong></span>
                         <input id="movies" type="checkbox" checked="true">
@@ -37,7 +40,7 @@
                         <input id="tv" type="checkbox" checked="true">
                     </div>
                 </div>
-                <div class="settingsRow">
+                <div class="optionsRow">
                     <div class="toggleExtension">
                         <span class="controlTitle"><strong>Books</strong></span>
                         <input id="books" type="checkbox" checked="true">
@@ -47,7 +50,7 @@
                         <input id="games" type="checkbox" checked="true">
                     </div>
                 </div>
-                <div class="settingsRow">
+                <div class="optionsRow">
                     <div class="toggleExtension">
                         <span class="controlTitle"><strong>Review Sites</strong></span>
                         <input id="review_sites" type="checkbox" checked="true">

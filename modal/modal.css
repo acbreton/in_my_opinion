@@ -31,7 +31,7 @@ body {
   width: 150px;
 }
 
-#extensionSettings {
+#extensionOptions {
   border-top: solid 1px lightgray;
 }
 
@@ -48,6 +48,9 @@ body {
   justify-content: space-evenly;
   padding: 12px 0;
 }
+.toggleExtension.main {
+  padding: 0;
+}
 .toggleExtension:nth-child(1) {
   border-right: solid 2px lightgray;
 }
@@ -55,13 +58,13 @@ body {
   border: 0;
 }
 
-.settingsRow {
+.optionsRow {
   display: flex;
 }
-.settingsRow:first-child {
+.optionsRow:first-child {
   border-bottom: solid 2px lightgray;
 }
-.settingsRow:last-child {
+.optionsRow:last-child {
   border-top: solid 2px lightgray;
 }
 
@@ -122,11 +125,14 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-#webStoreLink {
-  color: blue;
-  cursor: pointer;
+.links {
+  margin-top: 12px;
 }
 
-#webStoreLink:hover {
+#webStoreLink,
+#reviewLink {
+  font-weight: bold;
+  color: blue;
+  cursor: pointer;
   text-decoration: underline;
 }

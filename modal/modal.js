@@ -1,27 +1,27 @@
 const appVersion = chrome.runtime.getManifest().version;
-document.getElementById('appVersion').innerHTML = appVersion;
+document.getElementById("appVersion").innerHTML = appVersion;
 
-const toggle = document.getElementById('toggleExtension');
+const toggle = document.getElementById("toggleExtension");
 
-chrome.storage.local.get('enabled', (result) => {
+chrome.storage.local.get("enabled", (result) => {
     let isEnabled = (result.enabled !== undefined) ? result.enabled : true;
     toggle.checked = isEnabled;
 
     if (isEnabled) populateChecks();
 });
 
-toggle.addEventListener('change', () => {
+toggle.addEventListener("change", () => {
     toggle.checked = !!toggle.checked;
-    chrome.storage.local.set({'enabled': toggle.checked}, () => toggle.checked && populateChecks());
+    chrome.storage.local.set({"enabled": toggle.checked}, () => toggle.checked && populateChecks());
 
-    let extensionSettings = document.getElementById('extensionSettings');
-    extensionSettings.style.display = toggle.checked ? 'block' : 'none';
+    let extensionOptions = document.getElementById("extensionOptions");
+    extensionOptions.style.display = toggle.checked ? "block" : "none";
 });
 
 const categories = ["movies", "tv", "books", "games", "review_sites", "google_users"];
 
 categories.forEach((category) => {
-    document.querySelector(`#${category}`).addEventListener('change', changeHandler);
+    document.querySelector(`#${category}`).addEventListener("change", changeHandler);
 });
 
 function changeHandler(event) {
@@ -38,13 +38,21 @@ function populateChecks() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     let webStoreLink = document.getElementById("webStoreLink");
-    webStoreLink.addEventListener("click", openLink);
+    let rateLink = document.getElementById("reviewLink");
+    webStoreLink.addEventListener("click", openStoreLink);
+    rateLink.addEventListener("click", openRateLink);
 });
 
-function openLink() {
+function openStoreLink() {
     chrome.tabs.create({
         active: true, url: "https://chrome.google.com/webstore/detail/in-my-opinion/lkopodamggoocbopennlkmhbmhohlkdc"
     });
+}
+
+function openRateLink() {
+    chrome.tabs.create({
+        active: true, url: "https://chrome.google.com/webstore/detail/in-my-opinion/lkopodamggoocbopennlkmhbmhohlkdc/reviews"
+    })
 }
