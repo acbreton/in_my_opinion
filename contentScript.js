@@ -52,6 +52,7 @@ function runScripts(extensionEnabled = true) {
             '[class^="RatingBar"]',
             '[class*="rating-star-group"]',
             '[class*="ReviewContent"]',
+            '[data-testid*=hero-rating-bar]'
         ];
 
         for (let className of classNamesToRemove) {
