@@ -1,7 +1,11 @@
+@font-face {
+  font-family: "Louis George Cafe";
+  src: url("./fonts/louis_george_cafe.ttf");
+}
+
 html,
 body {
-  height: 100%;
-  height: 190px;
+  font-family: "Louis George Cafe", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .mainContent {

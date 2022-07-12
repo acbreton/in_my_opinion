@@ -13,11 +13,6 @@ chrome.storage.onChanged.addListener((changes) => {
 
 function runScripts(extensionEnabled) {
     const dataAttributesToRemove = {
-        movies: [
-            '[data-attrid="kc:/film/film:reviews"]',
-            '[data-attrid="kc:/film/film:critic_reviews"]',
-        ],
-        tv: ['[data-attrid="kc:/tv/tv_program:reviews"]'],
         books: ['[data-attrid="kc:/book/book:reviews"]'],
         games: ['[data-attrid="kc:/cvg/computer_videogame:reviews"]'],
         google_users: [
@@ -26,18 +21,17 @@ function runScripts(extensionEnabled) {
             '[data-attrid="kc:/ugc:user_reviews"]',
             '[data-starbar-class="rating-list"]',
         ],
+        movies: [
+            '[data-attrid="kc:/film/film:reviews"]',
+            '[data-attrid="kc:/film/film:critic_reviews"]',
+        ],
+        tv: ['[data-attrid="kc:/tv/tv_program:reviews"]']
     };
 
-    chrome.storage.local.get((result) => {
-        const disabledCategories = Object.keys(result).filter(
-            (key) => !result[key]
-        );
-        return _omitCategories(
-            disabledCategories,
-            dataAttributesToRemove,
-            extensionEnabled
-        );
-    });
+    _removeItemsFromPage(
+        dataAttributesToRemove,
+        extensionEnabled
+    );
 
     if (window.location.host === "www.google.com") {
         // Get the star ratings for the individual search results.
@@ -52,26 +46,21 @@ function runScripts(extensionEnabled) {
     }
 }
 
-_omitCategories = (
-    disabledCategories,
+_removeItemsFromPage = (
     dataAttributesToRemove,
     extensionEnabled
 ) => {
-    if (!disabledCategories.includes("review_sites")) {
-        _manageReviewResults(extensionEnabled);
-    }
-
-    Object.keys(dataAttributesToRemove).forEach((category) => {
-        dataAttributesToRemove[category].forEach((item) => {
-            let elem = document.querySelector(item);
+    Object.keys(dataAttributesToRemove).forEach((mediaCategory) => {
+        dataAttributesToRemove[mediaCategory].forEach((domId) => {
+            let elem = document.querySelector(domId);
 
             if (elem) {
-                elem.style.display = disabledCategories.includes(category)
-                    ? "block"
-                    : "none";
+                elem.style.display = extensionEnabled ? 'none' : 'block';
             }
         });
     });
+
+    _manageReviewResults(extensionEnabled);
 };
 
 _manageReviewResults = (extensionEnabled) => {
