@@ -229,6 +229,8 @@
     ],
     "manifest_version": 2,
     "browser_specific_settings": {
-        "gecko": {}
+        "gecko": {
+            "id": "{1e883c16-fc94-4cf8-b58f-f34b445f632e}"
+        }
     }
 }
