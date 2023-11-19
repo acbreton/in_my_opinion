@@ -1,6 +1,7 @@
 let isEnabled;
 let html = document.getElementsByTagName("html")[0];
 let placeholderDiv = document.createElement("div");
+placeholderDiv.setAttribute("id", "placeholder");
 
 function createLoadingPlaceholder() {
     let newContent = document.createTextNode("Removing User and Critic Ratings...");
@@ -20,16 +21,21 @@ function createLoadingPlaceholder() {
     placeholderDiv.appendChild(newContent);
     
     html.appendChild(placeholderDiv);
+
+    // In case it doesn't remove on it's own
+    setTimeout(() => removePlaceholder(), 7000);
 }
 
 function removePlaceholder() {
-    html.removeChild(placeholderDiv);
+    let elem = document.getElementById('placeholder');
+    elem && elem.parentNode.removeChild(elem);
     html.style.overflowY = 'inherit';
 }
 
 function init() {
     createLoadingPlaceholder();
-    window.onload = function() {
+
+    window.addEventListener('load', function() {
         chrome.storage.local.get("enabled", (result) => {
             isEnabled = result.enabled !== undefined ? result.enabled : true;
             
@@ -43,16 +49,19 @@ function init() {
                 ? runScripts(changes.enabled.newValue)
                 : runScripts(isEnabled);
         });
-    };
+    }, false);
 }
 
 function runScripts(extensionEnabled = true) {
     if (window.location.host.includes("imdb")) {
         const classNamesToRemove = [
             '[class^="RatingBar"]',
-            '[class*="rating-star-group"]',
+            '[class*="rating"]',
             '[class*="ReviewContent"]',
-            '[data-testid*=hero-rating-bar]'
+            '[data-testid="awards"]',
+            '[data-testid*="hero-rating-bar"]',
+            '[data-testid*="reviewContent"]',
+            '[data-testid="UserReviews"]',
         ];
 
         for (let className of classNamesToRemove) {
