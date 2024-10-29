@@ -1,7 +1,7 @@
 {
     "name": "In My Opinion",
     "short_name": "IMO",
-    "version": "1.0",
+    "version": "1.1",
     "description": "A Google Chrome extension for removing critic and fan review ratings from search results and various popular webpages.",
     "permissions": [
         "storage"

@@ -24,8 +24,17 @@ function runScripts(extensionEnabled) {
         movies: [
             '[data-attrid="kc:/film/film:reviews"]',
             '[data-attrid="kc:/film/film:critic_reviews"]',
+            '[itemprop="starRating"]',
+            '[itemprop="tomatoMeter"]',
+            '[data-g-id="reviews"]',
+            '[data-sncf="3"]',
+            '[data-md="17"]'
         ],
-        tv: ['[data-attrid="kc:/tv/tv_program:reviews"]']
+        tv: ['[data-attrid="kc:/tv/tv_program:reviews"]'],
+        aria: [
+            '[aria-label^="Rated"]',
+            '[aria-label^="Scored"]'
+        ]
     };
 
     _removeItemsFromPage(
@@ -52,10 +61,16 @@ _removeItemsFromPage = (
 ) => {
     Object.keys(dataAttributesToRemove).forEach((mediaCategory) => {
         dataAttributesToRemove[mediaCategory].forEach((domId) => {
-            let elem = document.querySelector(domId);
+            let elems = document.querySelectorAll(domId);
 
-            if (elem) {
-                elem.style.display = extensionEnabled ? 'none' : 'block';
+            if (elems.length) {
+                elems.forEach((elem) => {
+                    if (mediaCategory == 'aria') {
+                        elem = elem.closest('div');
+                    }
+
+                    elem.style.display = extensionEnabled ? 'none' : 'block';
+                })
             }
         });
     });
