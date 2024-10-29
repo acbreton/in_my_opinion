@@ -6,7 +6,7 @@
 
 <p align="center">
     <a rel="noreferrer noopener" target="_blank" href="https://chrome.google.com/webstore/detail/in-my-opinion/lkopodamggoocbopennlkmhbmhohlkdc">
-        <img alt="Chrome Web Store" src="https://img.shields.io/static/v1?label=Chrome&message=1.0&color=green&style=for-the-badge&logo=google-chrome">
+        <img alt="Chrome Web Store" src="https://img.shields.io/static/v1?label=Chrome&message=1.1&color=green&style=for-the-badge&logo=google-chrome">
     </a>
     <a rel="noreferrer noopener" target="_blank" href="https://addons.mozilla.org/firefox/addon/in-my-opinion/">
         <img alt="Firefox Add-ons" src="https://img.shields.io/static/v1?label=firefox&message=1.1&color=blue&style=for-the-badge&logo=firefox">
