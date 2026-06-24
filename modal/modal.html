@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="./modal.css">
     </head>
     <body>
@@ -7,7 +9,7 @@
         <div class="mainContent">
             <div class="extensionHeader">
                 <span class="extensionTitle"><strong>In My Opinion</strong></span>
-                <span class="extensionVersion"></span><i>(v<span id="appVersion"></span>)</i></span>
+                <span class="extensionVersion"><i>(v<span id="appVersion"></span>)</i></span>
             </div>
             <div class="extensionIntroduction">
                 <img class="extensionLogo" src="../images/imo.png"/>
@@ -23,7 +25,7 @@
             <div class="toggleExtension main">
                 <span class="controlTitle"><strong>OFF</strong></span>
                 <label class="switch">
-                    <input type="checkbox" id="toggleExtension" checked="true">
+                    <input type="checkbox" id="toggleExtension" aria-label="Toggle In My Opinion on or off" checked="true">
                     <span class="slider round"></span>
                 </label>
                 <span class="controlTitle"><strong>ON</strong></span>

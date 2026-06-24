@@ -86,7 +86,8 @@ function observeHead() {
 
 function init() {
     chrome.storage.local.get("enabled", (result) => {
-        if (result.enabled) observeHead();
+        const isEnabled = result.enabled !== undefined ? result.enabled : true;
+        if (isEnabled) observeHead();
     });
 
     chrome.storage.onChanged.addListener((changes) => {

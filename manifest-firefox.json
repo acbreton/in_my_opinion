@@ -222,7 +222,7 @@
             "run_at": "document_end"
         },
         {
-            "matches": ["*://www.imdb.com/*"],
+            "matches": ["*://www.imdb.com/*", "*://www.goodreads.com/*"],
             "js": ["contentScript.js"],
             "run_at": "document_start"
         }
