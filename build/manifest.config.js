@@ -49,7 +49,7 @@ function contentScripts(subdomains) {
 const targets = {
     // Chrome, loaded unpacked for development (also targets the Play store).
     "manifest.json": {
-        version: "1.2",
+        version: "1.2.1",
         manifestVersion: 3,
         actionKey: "action",
         permissions: ["storage"],
@@ -57,7 +57,7 @@ const targets = {
     },
     // Chrome Web Store submission build.
     "manifest-google-v3.json": {
-        version: "1.2",
+        version: "1.2.1",
         manifestVersion: 3,
         actionKey: "action",
         permissions: ["storage"],
