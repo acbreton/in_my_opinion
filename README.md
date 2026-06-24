@@ -18,4 +18,25 @@
 </p>
 <br/>
 
+## Development
+
+The extension ships three manifests (Chrome dev, Chrome Web Store, and Firefox). They all share the same large list of Google ccTLD match patterns, so the manifests are **generated** from a single source rather than hand-edited.
+
+- Edit `build/manifest.config.js` (per-target settings) and `build/tlds.json` (the Google ccTLD list).
+- Regenerate the manifests:
+
+```bash
+npm run build
+```
+
+- Verify the committed manifests are up to date (useful in CI):
+
+```bash
+npm run build:check
+```
+
+To load the extension locally, build it and then load the project directory as an unpacked extension (Chrome: `chrome://extensions` → *Load unpacked*; Firefox: `about:debugging` → *Load Temporary Add-on* → select `manifest-firefox.json`).
+
+<br/>
+
 *Developed By: Alec Breton (acbreton)*

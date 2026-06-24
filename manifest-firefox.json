@@ -218,12 +218,19 @@
                 "*://www.google.co.zw/*",
                 "*://www.google.cat/*"
             ],
-            "js": ["contentScriptGoogle.js"],
+            "js": [
+                "contentScriptGoogle.js"
+            ],
             "run_at": "document_end"
         },
         {
-            "matches": ["*://www.imdb.com/*", "*://www.goodreads.com/*"],
-            "js": ["contentScript.js"],
+            "matches": [
+                "*://www.imdb.com/*",
+                "*://www.goodreads.com/*"
+            ],
+            "js": [
+                "contentScript.js"
+            ],
             "run_at": "document_start"
         }
     ],

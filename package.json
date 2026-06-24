@@ -1,0 +1,12 @@
+{
+    "name": "in-my-opinion",
+    "version": "1.2.0",
+    "private": true,
+    "description": "Browser extension that hides critic and fan review ratings from search results and popular webpages.",
+    "scripts": {
+        "build": "node build/build-manifests.js",
+        "build:check": "node build/build-manifests.js --check"
+    },
+    "license": "MIT",
+    "author": "Alec Breton (acbreton)"
+}
