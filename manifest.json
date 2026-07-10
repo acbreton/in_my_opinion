@@ -4,7 +4,8 @@
     "version": "1.2.1",
     "description": "A Google Chrome extension for removing critic and fan review ratings from search results and various popular webpages.",
     "permissions": [
-        "storage"
+        "storage",
+        "activeTab"
     ],
     "action": {
         "default_title": "In My Opinion",
@@ -422,5 +423,8 @@
             "run_at": "document_start"
         }
     ],
+    "background": {
+        "service_worker": "background.js"
+    },
     "manifest_version": 3
 }

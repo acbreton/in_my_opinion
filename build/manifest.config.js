@@ -52,24 +52,27 @@ const targets = {
         version: "1.2.1",
         manifestVersion: 3,
         actionKey: "action",
-        permissions: ["storage"],
+        permissions: ["storage", "activeTab"],
         googleSubdomains: ["www", "play"],
+        background: { service_worker: "background.js" },
     },
     // Chrome Web Store submission build.
     "manifest-google-v3.json": {
         version: "1.2.1",
         manifestVersion: 3,
         actionKey: "action",
-        permissions: ["storage"],
+        permissions: ["storage", "activeTab"],
         googleSubdomains: ["www"],
+        background: { service_worker: "background.js" },
     },
     // Firefox Add-ons (Manifest V2).
     "manifest-firefox.json": {
         version: "1.1",
         manifestVersion: 2,
         actionKey: "browser_action",
-        permissions: ["*://www.google.com/*", "*://www.imdb.com/*", "storage"],
+        permissions: ["*://www.google.com/*", "*://www.imdb.com/*", "storage", "activeTab"],
         googleSubdomains: ["www"],
+        background: { scripts: ["background.js"], persistent: false },
         extra: {
             browser_specific_settings: {
                 gecko: { id: "{1e883c16-fc94-4cf8-b58f-f34b445f632e}" },

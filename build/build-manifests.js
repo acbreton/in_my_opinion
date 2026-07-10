@@ -30,6 +30,7 @@ function buildManifest(target) {
         [target.actionKey]: action,
         icons: shared.icons,
         content_scripts: contentScripts(target.googleSubdomains),
+        ...(target.background ? { background: target.background } : {}),
         manifest_version: target.manifestVersion,
         ...(target.extra || {}),
     };

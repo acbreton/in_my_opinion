@@ -6,7 +6,8 @@
     "permissions": [
         "*://www.google.com/*",
         "*://www.imdb.com/*",
-        "storage"
+        "storage",
+        "activeTab"
     ],
     "browser_action": {
         "default_title": "In My Opinion",
@@ -234,6 +235,12 @@
             "run_at": "document_start"
         }
     ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
     "manifest_version": 2,
     "browser_specific_settings": {
         "gecko": {
