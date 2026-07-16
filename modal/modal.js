@@ -54,7 +54,7 @@ function openReportLink() {
             template: "selector-request.yml",
             labels: "selector-request",
         });
-        if (host) params.set("title", `[Selector request] ${host}`);
+        if (host) params.set("title", `Hide ratings on ${host}`);
         if (host) params.set("site", host);
         if (pageUrl) params.set("page_url", pageUrl);
 
