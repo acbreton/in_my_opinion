@@ -11,7 +11,7 @@ body {
 .mainContent {
   display: flex;
   flex-flow: column;
-  width: 300px; 
+  width: 380px; 
 }
 
 .extensionIntroduction {
