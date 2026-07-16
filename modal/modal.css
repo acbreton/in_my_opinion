@@ -11,7 +11,7 @@ body {
 .mainContent {
   display: flex;
   flex-flow: column;
-  width: 300px; 
+  width: 380px; 
 }
 
 .extensionIntroduction {
@@ -134,7 +134,8 @@ input:checked + .slider:before {
 }
 
 #webStoreLink,
-#reviewLink {
+#reviewLink,
+#reportLink {
   font-weight: bold;
   color: blue;
   cursor: pointer;

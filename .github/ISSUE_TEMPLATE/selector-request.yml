@@ -1,0 +1,52 @@
+name: Suggest a rating to hide
+description: Suggest a critic or fan rating (or review) that In My Opinion should hide.
+title: "[Selector Request] - Hide ratings on <site>"
+labels:
+  - selector-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve **In My Opinion**!
+
+        Use this to suggest a rating or review the extension should hide on a
+        site it doesn't cover yet. A few tips:
+
+        - Add the site and a page link so we can see the same thing you do.
+        - A screenshot (just drag it into the description) makes it much easier.
+        - You don't need to know any code. The last field is optional.
+
+        Give a 👍 on requests you'd like to see added, so the most-wanted ones rise to the top.
+  - type: input
+    id: site
+    attributes:
+      label: Site
+      description: The website's name or address.
+      placeholder: e.g. rottentomatoes.com
+    validations:
+      required: true
+  - type: input
+    id: page_url
+    attributes:
+      label: Page link
+      description: A page where the rating or review shows up.
+      placeholder: https://...
+    validations:
+      required: false
+  - type: textarea
+    id: what
+    attributes:
+      label: What should be hidden?
+      description: Describe the rating or review you'd like removed. A screenshot helps a lot.
+      placeholder: e.g. the Tomatometer and Audience Score near the top of the page.
+    validations:
+      required: true
+  - type: input
+    id: selector
+    attributes:
+      label: CSS selector (optional, advanced)
+      description: If you happen to know it, a CSS selector that targets the element.
+      placeholder: e.g. [data-testid="rating"], .audience-score
+    validations:
+      required: false
+
