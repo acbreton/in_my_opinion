@@ -1,6 +1,6 @@
 name: Suggest a rating to hide
 description: Suggest a critic or fan rating (or review) that In My Opinion should hide.
-title: "Hide ratings on "
+title: "[Selector Request] - Hide ratings on <site>"
 labels:
   - selector-request
 body:
