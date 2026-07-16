@@ -36,7 +36,7 @@ function openRateLink() {
 
 // Opens a prefilled GitHub issue form so users can suggest a rating/review
 // element to hide. The active tab's URL and hostname are captured to give the
-// report context. These labeled issues power the public suggestion board.
+// report context. These labeled issues are the running list of suggestions.
 const REPO = "acbreton/in_my_opinion";
 
 function openReportLink() {

@@ -7,9 +7,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve **In My Opinion**! Suggestions collected here
-        power the public [suggestion board](https://alecbreton.com) — give a 👍
-        on requests you'd also like to see added.
+        Thanks for helping improve **In My Opinion**! Give a 👍 on requests
+        you'd also like to see added, so the most-wanted ones rise to the top.
   - type: input
     id: site
     attributes:
