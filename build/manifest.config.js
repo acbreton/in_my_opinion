@@ -67,7 +67,7 @@ const targets = {
     },
     // Firefox Add-ons (Manifest V2).
     "manifest-firefox.json": {
-        version: "1.2",
+        version: "1.3.0",
         manifestVersion: 2,
         actionKey: "browser_action",
         permissions: ["*://www.google.com/*", "*://www.imdb.com/*", "storage", "activeTab"],
@@ -75,7 +75,10 @@ const targets = {
         background: { scripts: ["background.js"], persistent: false },
         extra: {
             browser_specific_settings: {
-                gecko: { id: "{1e883c16-fc94-4cf8-b58f-f34b445f632e}" },
+                gecko: {
+                    id: "{1e883c16-fc94-4cf8-b58f-f34b445f632e}",
+                    data_collection_permissions: { required: ["none"] },
+                },
             },
         },
     },
