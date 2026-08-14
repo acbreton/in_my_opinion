@@ -5,7 +5,8 @@
     "description": "Browser extension that hides critic and fan review ratings from search results and popular webpages.",
     "scripts": {
         "build": "node build/build-manifests.js",
-        "build:check": "node build/build-manifests.js --check"
+        "build:check": "node build/build-manifests.js --check",
+        "package:firefox": "node build/package-firefox.js"
     },
     "license": "MIT",
     "author": "Alec Breton (acbreton)"
