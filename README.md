@@ -37,10 +37,6 @@ npm run build:check
 
 To load the extension locally, build it and then load the project directory as an unpacked extension (Chrome: `chrome://extensions` → *Load unpacked*; Firefox: `about:debugging` → *Load Temporary Add-on* → select `manifest-firefox.json`).
 
-## Hidden-today badge
-
-`background.js` runs as a background service worker (MV3) / background script (MV2). Content scripts message it with how many rating elements they hid; it keeps a per-day tally in `chrome.storage.local` and shows the total as the integer badge on the toolbar icon. The count resets at local midnight and clears when the extension is toggled off. `background.js` is shared verbatim across targets and is wired into each manifest by the build config.
-
 ## Suggestions
 
 The popup's *Suggest something to hide* link opens a prefilled GitHub issue form (`.github/ISSUE_TEMPLATE/selector-request.yml`) that captures the site, page URL, and (optionally) a CSS selector. Submitted issues carry the `selector-request` label, and 👍 reactions act as upvotes so the most-wanted requests rise to the top. The issue list itself serves as the suggestion board.

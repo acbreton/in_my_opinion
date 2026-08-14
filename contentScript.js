@@ -33,28 +33,6 @@ function getSiteKey() {
     return null;
 }
 
-// Counts each hidden rating element once for the "hidden today" badge and
-// reports the delta to the background worker.
-const counted = new WeakSet();
-
-function reportHiddenForSite(site) {
-    const selectors = CLASSNAMES_TO_REMOVE[site].join(', ');
-    let n = 0;
-    document.querySelectorAll(selectors).forEach((el) => {
-        if (!counted.has(el)) {
-            counted.add(el);
-            n++;
-        }
-    });
-    if (n > 0) {
-        try {
-            chrome.runtime.sendMessage({ type: "imo-hidden", count: n });
-        } catch (e) {
-            /* worker unavailable; badge is best-effort */
-        }
-    }
-}
-
 
 function log(message) {
     if (!isProdMode) {
@@ -76,8 +54,6 @@ function hideElementsForSite() {
     log(`Injected CSS to hide elements with class: ${CLASSNAMES_TO_REMOVE[site]}`);
 
     document.head.appendChild(blockStyleElement);
-
-    reportHiddenForSite(site);
 }
 
 function showElementsForSite() {

@@ -49,30 +49,27 @@ function contentScripts(subdomains) {
 const targets = {
     // Chrome, loaded unpacked for development (also targets the Play store).
     "manifest.json": {
-        version: "1.3.0",
+        version: "1.3.1",
         manifestVersion: 3,
         actionKey: "action",
         permissions: ["storage", "activeTab"],
         googleSubdomains: ["www", "play"],
-        background: { service_worker: "background.js" },
     },
     // Chrome Web Store submission build.
     "manifest-google-v3.json": {
-        version: "1.3.0",
+        version: "1.3.1",
         manifestVersion: 3,
         actionKey: "action",
         permissions: ["storage", "activeTab"],
         googleSubdomains: ["www"],
-        background: { service_worker: "background.js" },
     },
     // Firefox Add-ons (Manifest V2).
     "manifest-firefox.json": {
-        version: "1.3.0",
+        version: "1.3.1",
         manifestVersion: 2,
         actionKey: "browser_action",
         permissions: ["*://www.google.com/*", "*://www.imdb.com/*", "storage", "activeTab"],
         googleSubdomains: ["www"],
-        background: { scripts: ["background.js"], persistent: false },
         extra: {
             browser_specific_settings: {
                 gecko: {

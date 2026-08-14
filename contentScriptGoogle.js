@@ -28,48 +28,6 @@ let isEnabled = true;
 let observer = null;
 let scheduled = false;
 
-// "Hidden today" badge accounting. We count each element only once (via a
-// WeakSet) and batch the deltas so the background worker isn't spammed on every
-// mutation-observer tick.
-const counted = new WeakSet();
-let pendingCount = 0;
-let reportScheduled = false;
-
-function reportHidden(n) {
-    if (n > 0) pendingCount += n;
-    if (reportScheduled || pendingCount === 0) return;
-    reportScheduled = true;
-    setTimeout(() => {
-        reportScheduled = false;
-        const c = pendingCount;
-        pendingCount = 0;
-        if (c > 0) {
-            try {
-                chrome.runtime.sendMessage({ type: "imo-hidden", count: c });
-            } catch (e) {
-                /* worker unavailable; badge is best-effort */
-            }
-        }
-    }, 500);
-}
-
-function countNewlyHidden() {
-    let n = 0;
-    document.querySelectorAll(SELECTORS_TO_HIDE.join(", ")).forEach((el) => {
-        if (!counted.has(el)) {
-            counted.add(el);
-            n++;
-        }
-    });
-    document.querySelectorAll(`.${HIDDEN_CLASS}`).forEach((el) => {
-        if (!counted.has(el)) {
-            counted.add(el);
-            n++;
-        }
-    });
-    reportHidden(n);
-}
-
 function buildStyle() {
     const style = document.createElement("style");
     style.id = STYLE_ID;
@@ -113,8 +71,6 @@ function tagAncestors() {
             if (row) row.classList.add(HIDDEN_CLASS);
         }
     });
-
-    countNewlyHidden();
 }
 
 function clearTags() {
