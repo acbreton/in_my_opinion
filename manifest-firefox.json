@@ -244,6 +244,7 @@
                     "none"
                 ]
             }
-        }
+        },
+        "gecko_android": {}
     }
 }

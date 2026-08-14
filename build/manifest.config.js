@@ -76,6 +76,7 @@ const targets = {
                     id: "{1e883c16-fc94-4cf8-b58f-f34b445f632e}",
                     data_collection_permissions: { required: ["none"] },
                 },
+                gecko_android: {},
             },
         },
     },
