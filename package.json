@@ -6,7 +6,8 @@
     "scripts": {
         "build": "node build/build-manifests.js",
         "build:check": "node build/build-manifests.js --check",
-        "package:firefox": "node build/package-firefox.js"
+        "package:firefox": "node build/package-firefox.js",
+        "package:chrome": "node build/package-chrome.js"
     },
     "license": "MIT",
     "author": "Alec Breton (acbreton)"
